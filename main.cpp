@@ -1,19 +1,62 @@
 #include <iostream>
 #include <string>
-
+#include <fstream>
+#include <sstream>
 using namespace std;
 
+
 struct Cell {
-	uint8_t val;
+	char val;
 	struct Cell* prev;
 	struct Cell* next;
 };
 
 
-string program = "-[------->+<]>-.-[->+++++<]>++.+++++++..+++.[--->+<]>-----.--[->++++<]>-.--------.+++.------.--------.";
 
 
-int main() {
+
+int main(int argc, char* argv[]) {
+
+	if (argc == 1) {
+		cout << "Usage:\nbf FILE\nUse '-' for stdin\n\n";
+		return 0;
+	}
+
+
+	
+	string inputProgram;
+	ostringstream ss;
+	if (argv[1] == "-") {
+		ss << cin.rdbuf();
+	} else {
+		ifstream f(argv[1]);
+		if (f) {
+			ss << f.rdbuf();
+		}
+		else {
+			cout << "Not a file";
+			return 1;
+		}
+	}
+
+	inputProgram = ss.str();
+
+
+	string program;
+
+	for (char c : inputProgram) { // strip comments
+		if (c == '+' ||
+			c == '-' ||
+			c == '<' ||
+			c == '>' ||
+			c == '.' ||
+			c == ',' ||
+			c == '[' ||
+			c == ']' ) {
+			program += c;
+		}
+	}
+
 
 	int *loopPairs;
 	loopPairs = new int[program.length()];
@@ -33,7 +76,7 @@ int main() {
 			while (loopDepth) {
 				progPtr++;
 				if (progPtr == program.length()) {
-					cout << "!! Missing matching ']' at char " << left;
+					cout << "!! Missing matching ']' at command " << left;
 					return 1;
 				}
 				if (program[progPtr] == '[') loopDepth++;
@@ -50,8 +93,8 @@ int main() {
 
 	progPtr = 0;
 
+	// program loop
 	while (progPtr >= 0 && progPtr < program.length()) {
-
 		switch (program[progPtr]) {
 
 		case '<':
@@ -85,7 +128,7 @@ int main() {
 
 
 		case '.':
-			cout << (char)cellPtr->val;
+			cout << cellPtr->val;
 			break;
 
 
