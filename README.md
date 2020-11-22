@@ -9,3 +9,6 @@ Simple brainfuck interpreter
 ### Usage 
 `bf FILE`  
 ('-' for stdin)
+
+### To-do
+- Optimise execution speed
