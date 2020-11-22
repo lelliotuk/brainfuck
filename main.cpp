@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+
 using namespace std;
 
 
@@ -12,16 +13,12 @@ struct Cell {
 };
 
 
-
-
-
 int main(int argc, char* argv[]) {
 
 	if (argc == 1) {
 		cout << "Usage:\nbf FILE\nUse '-' for stdin\n\n";
 		return 0;
 	}
-
 
 	
 	string inputProgram;
@@ -41,10 +38,10 @@ int main(int argc, char* argv[]) {
 
 	inputProgram = ss.str();
 
-
 	string program;
 
-	for (char c : inputProgram) { // strip comments
+	// strip comments
+	for (char c : inputProgram) { 
 		if (c == '+' ||
 			c == '-' ||
 			c == '<' ||
@@ -105,7 +102,6 @@ int main(int argc, char* argv[]) {
 			break;
 
 
-
 		case '>':
 			if (!cellPtr->next){
 				cellPtr->next = new Cell{ 0, cellPtr, nullptr };
@@ -114,11 +110,9 @@ int main(int argc, char* argv[]) {
 			break;
 
 
-
 		case '-':
 			cellPtr->val--;
 			break;
-
 
 
 		case '+':
@@ -126,17 +120,14 @@ int main(int argc, char* argv[]) {
 			break;
 
 
-
 		case '.':
 			cout << cellPtr->val;
 			break;
 
 
-
 		case ',':
 			cin >> cellPtr->val;
 			break;
-
 
 
 		case '[':
@@ -146,14 +137,11 @@ int main(int argc, char* argv[]) {
 			break;
 
 
-
 		case ']':
 			if (cellPtr->val) {
 				progPtr = loopPairs[progPtr];
 			} 
 			break;
-
-
 
 		}
 		progPtr++;
