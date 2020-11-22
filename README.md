@@ -3,7 +3,7 @@ Simple brainfuck interpreter
 
 ### Implementation
 - 1 Byte cells
-- Negative memory ('<' command at cell 0)
+- Negative memory index ('<' command at cell 0)
 - No memory limit
 
 ### Usage 
@@ -11,4 +11,5 @@ Simple brainfuck interpreter
 ('-' for stdin)
 
 ### To-do
+- Extra command line options
 - Optimise execution speed
