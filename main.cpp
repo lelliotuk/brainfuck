@@ -20,10 +20,10 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}
 
-	
 	string inputProgram;
 	ostringstream ss;
-	if (argv[1] == "-") {
+	cout << argv[1];
+	if (strcmp(argv[1], "-") == 0) {
 		ss << cin.rdbuf();
 	} else {
 		ifstream f(argv[1]);
@@ -37,6 +37,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	inputProgram = ss.str();
+
 
 	string program;
 
@@ -58,9 +59,7 @@ int main(int argc, char* argv[]) {
 	int *loopPairs;
 	loopPairs = new int[program.length()];
 
-
 	unsigned int progPtr = 0;
-
 
 	struct Cell* cellPtr = new Cell{ 0,nullptr,nullptr };
 
@@ -146,5 +145,4 @@ int main(int argc, char* argv[]) {
 		}
 		progPtr++;
 	}
-
 }
