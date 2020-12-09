@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
 	string inputProgram;
 	ostringstream ss;
-	cout << argv[1];
+
 	if (strcmp(argv[1], "-") == 0) {
 		ss << cin.rdbuf();
 	} else {
