@@ -13,4 +13,3 @@ Simple brainfuck interpreter
 ### To-do
 - Extra command line options
 - Optimise execution speed
-
