@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
 					return 1;
 				}
 				if (program[progPtr] == '[') loopDepth++;
-				if (program[progPtr] == ']') loopDepth--;
+				else if (program[progPtr] == ']') loopDepth--;
 			}
 			int right = progPtr;
 			
